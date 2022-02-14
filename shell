@@ -1,0 +1,1 @@
+docker run --platform linux/amd64 --rm -v $PWD:/m68k --entrypoint=/bin/bash -it registry.gitlab.com/doragasu/docker-sgdk:v1.70

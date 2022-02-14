@@ -1,0 +1,17 @@
+width: 1280, height: 960
+SDL2 Render Driver: opengl
+Window created with size: 1280 x 834
+config says: 512
+Initialized audio at frequency 48000 with a 1024 sample buffer, 32-bit float format
+Added 6 game controller mappings from gamecontrollerdb.txt
+Min samples buffered before audio start: 1600
+Product ID: 00000000
+SHA1: a6d209a5b0bda487f0de263a7c30a2d33a4d9f1b
+Not found in ROM DB, examining header
+
+Min samples buffered before audio start: 1600
+IO port 1 connected to gamepad #1 with type '6-button gamepad'
+IO port 2 connected to gamepad #2 with type '6-button gamepad'
+IO port EXT connected to device 'None'
+Loaded SRAM from /Users/luiz/.local/share/blastem/rom/save.sram
+Saved SRAM to /Users/luiz/.local/share/blastem/rom/save.sram
