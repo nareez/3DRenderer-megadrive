@@ -123,7 +123,7 @@ void render(void){
         draw_triangle(triangles_to_render[i].points[0].x, triangles_to_render[i].points[0].y
                      ,triangles_to_render[i].points[1].x, triangles_to_render[i].points[1].y
                      ,triangles_to_render[i].points[2].x, triangles_to_render[i].points[2].y
-                     ,COLOR, cube_rotation);
+                     ,COLOR);
 
     }
     BMP_showFPS(1);

@@ -58,14 +58,6 @@ void draw_line(int x0, int y0, int x1, int y1, int color){
 
     //prevent a div/0
     if(longest_side_length == 0){
-        // draw_fix16(intToFix16(x0));
-        // draw_fix16(intToFix16(x1));
-        // draw_fix16(intToFix16(y0));
-        // draw_fix16(intToFix16(y1));
-        // draw_fix16(cube.x);
-        // draw_fix16_reset();
-        // draw_fix16(cube.y);
-        // draw_fix16(cube.z);
         return;
     }
 
@@ -83,8 +75,7 @@ void draw_line(int x0, int y0, int x1, int y1, int color){
 
 }
 
-void draw_triangle(int x0, int y0, int x1, int y1, int x2, int y2, int color, vec3_t cube_r){
-    cube = cube_r;
+void draw_triangle(int x0, int y0, int x1, int y1, int x2, int y2, int color){
     draw_line(x0, y0, x1, y1, color);
     draw_line(x1, y1, x2, y2, color);
     draw_line(x2, y2, x0, y0, color);
