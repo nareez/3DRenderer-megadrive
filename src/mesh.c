@@ -1,6 +1,5 @@
 #include "mesh.h"
 
-
 vec3_t mesh_vertices[N_MESH_VERTICES] = {
     { .x = FIX16(0.573569), .y = FIX16(0.778566), .z = FIX16(-0.918088) }, // 0
     { .x = FIX16(1.401652), .y = FIX16(-1.294410), .z = FIX16(-1.344623) }, // 1
