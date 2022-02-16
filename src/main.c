@@ -37,10 +37,7 @@ void update(void){
     cube_rotation.x += cube_rotation.x >= FIX16(31.78) ? FIX16(-31.78) : FIX16(0.1);
     cube_rotation.y += cube_rotation.y >= FIX16(31.78) ? FIX16(-31.78) : FIX16(0.1);
     cube_rotation.z += cube_rotation.z >= FIX16(31.78) ? FIX16(-31.78) : FIX16(0.1);
-    // draw_fix16(cube_rotation.x);
-    // draw_fix16(cube_rotation.y);
-    // draw_fix16(cube_rotation.z);
-    // draw_fix16_reset();
+
     how_much_triangles_to_render = 0;
     
     for (int i = 0; i < N_MESH_FACES; i++) {
