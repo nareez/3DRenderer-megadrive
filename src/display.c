@@ -46,6 +46,7 @@ void draw_rect(int dx, int dy, int width, int height, int color) {
     }
 }
 
+//Native drawline maybe Bresenhamß
 void draw_line(int x0, int y0, int x1, int y1, int color) {
     Vect2D_s16 v1 = {
         .x = x0,
@@ -64,6 +65,7 @@ void draw_line(int x0, int y0, int x1, int y1, int color) {
     BMP_drawLine(&l);
 }
 // TODO fix div/0 bug when x0 and y0 is equal x1 and y1, this occurs after a few seconds
+// DDA algorithm 
 void draw_line2(int x0, int y0, int x1, int y1, int color) {
     int delta_x = (x1 - x0);
     int delta_y = (y1 - y0);
