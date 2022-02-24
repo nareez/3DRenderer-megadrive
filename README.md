@@ -1,10 +1,11 @@
 # 3DRenderer-megadrive
 
-Sega Megadrive (Genesis) SGDK port of the 3D renderer developed in [3D Graphics Programming from Scratch](https://courses.pikuma.com/courses/learn-computer-graphics-programming) course.
+Sega Megadrive (Genesis) SGDK tech demo of the 3D renderer developed in [3D Graphics Programming from Scratch](https://courses.pikuma.com/courses/learn-computer-graphics-programming) course.
+
+Runs at max 20 FPS, SGDK BMP.H limit that simulates a framebuffer on Sega Megadrive (Genesis).
+
+Due limitations of Sega Megadrive, i do not plan to continue coding this project
 
 Techs:
 - [SGDK 1.7](https://github.com/Stephane-D/SGDK)
 - [Doragasu SGDK docker container](https://gitlab.com/doragasu/docker-sgdk)
-
-Bugs:
-- After a few seconds there is a division by zero in the draw_line function. The bug is handled and does not affect rendering, but it should be fixed.
