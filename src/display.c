@@ -5,10 +5,10 @@
 
 void initialize_window(void) {
     VDP_setScreenWidth256();
-    BMP_init(FALSE, BG_A, PAL0, FALSE);
+    BMP_init(TRUE, BG_A, PAL2, FALSE);
 }
 
-int pos = 2;
+u16 pos = 2;
 void draw_fix16(fix16 v) {
     char str[30];
     fix16ToStr(v, str, 2);
@@ -22,15 +22,15 @@ void draw_fix16_reset(void) {
     pos = 2;
 }
 
-void draw_pixel(int x, int y, u8 color) {
+void draw_pixel(s16 x, s16 y, u8 color) {
     if (x >= 0 && y >= 0 && x < BMP_WIDTH && y < BMP_HEIGHT) {
         BMP_setPixelFast(x, y, color);
     }
 }
 
-void draw_grid(int grid_size) {
-    for (int y = 0; y < BMP_HEIGHT; y++) {
-        for (int x = 0; x < BMP_WIDTH; x++) {
+void draw_grid(s16 grid_size) {
+    for (s16 y = 0; y < BMP_HEIGHT; y++) {
+        for (s16 x = 0; x < BMP_WIDTH; x++) {
             if (y % grid_size == 0 && x % grid_size == 0) {
                 draw_pixel(x, y, WHITE);
             }
@@ -38,16 +38,16 @@ void draw_grid(int grid_size) {
     }
 }
 
-void draw_rect(int dx, int dy, int width, int height, u8 color) {
-    for (int y = dy; y < (dy + height); y++) {
-        for (int x = dx; x < (dx + width); x++) {
+void draw_rect(s16 dx, s16 dy, s16 width, s16 height, u8 color) {
+    for (s16 y = dy; y < (dy + height); y++) {
+        for (s16 x = dx; x < (dx + width); x++) {
             draw_pixel(x, y, color);
         }
     }
 }
 
 //SGDK drawline assembly Bresenham
-void draw_line(int x0, int y0, int x1, int y1, u16 color) {
+void draw_line(s16 x0, s16 y0, s16 x1, s16 y1, u16 color) {
     Vect2D_s16 v1 = {
         .x = x0,
         .y = y0
@@ -91,7 +91,7 @@ void draw_line(int x0, int y0, int x1, int y1, u16 color) {
 //     }
 // }
 
-void draw_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 color) {
+void draw_triangle(s16 x0, s16 y0, s16 x1, s16 y1, s16 x2, s16 y2, u16 color) {
     draw_line(x0, y0, x1, y1, color);
     draw_line(x1, y1, x2, y2, color);
     draw_line(x2, y2, x0, y0, color);

@@ -1,7 +1,7 @@
 #include "triangle.h"
 
-void int_swap(int * a, int * b){
-    int tmp = *a;
+void int_swap(s16 * a, s16 * b){
+    s16 tmp = *a;
     *a = *b;
     *b = tmp;
 }
@@ -19,7 +19,7 @@ void int_swap(int * a, int * b){
 //        (x2,y2)
 //
 ///////////////////////////////////////////////////////////////////////////////
-void fill_flat_top_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 color){
+void fill_flat_top_triangle(s16 x0, s16 y0, s16 x1, s16 y1, s16 x2, s16 y2, u16 color){
     // Find the two slopes (two triangles legs)
     fix16 inv_slope_1 = fix16Div(intToFix16(x2 - x0), intToFix16(y2 - y0));
     fix16 inv_slope_2 = fix16Div(intToFix16(x2 - x1), intToFix16(y2 - y1));
@@ -29,7 +29,7 @@ void fill_flat_top_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 
     fix16 x_end = intToFix16(x2);
 
     // loop all scanlines from bottom to top
-    for (int y = y2; y >= y0; y--){
+    for (s16 y = y2; y >= y0; y--){
         draw_line(fix16ToRoundedInt(x_start), y, fix16ToRoundedInt(x_end), y, color);
         x_start -= inv_slope_1;
         x_end -= inv_slope_2;
@@ -49,7 +49,7 @@ void fill_flat_top_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 
 //  (x1,y1)------(x2,y2)
 //
 //////////////////////////////////////////////////////////////////////////////*/
-void fill_flat_bottom_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 color){
+void fill_flat_bottom_triangle(s16 x0, s16 y0, s16 x1, s16 y1, s16 x2, s16 y2, u16 color){
     // Find the two slopes (two triangles legs)
     fix16 inv_slope_1 = fix16Div(intToFix16(x1 - x0), intToFix16(y1 - y0));
     fix16 inv_slope_2 = fix16Div(intToFix16(x2 - x0), intToFix16(y2 - y0));
@@ -59,7 +59,7 @@ void fill_flat_bottom_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u
     fix16 x_end = intToFix16(x0);
 
     // loop all scanlines from top to bottom
-    for (int y = y0; y <= y2; y++){
+    for (s16 y = y0; y <= y2; y++){
         draw_line(fix16ToRoundedInt(x_start), y, fix16ToRoundedInt(x_end), y, color);
         x_start += inv_slope_1;
         x_end += inv_slope_2;
@@ -89,7 +89,7 @@ void fill_flat_bottom_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u
 //                         (x2,y2)
 //
 //////////////////////////////////////////////////////////////////////////////*/
-void draw_filled_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 color){
+void draw_filled_triangle(s16 x0, s16 y0, s16 x1, s16 y1, s16 x2, s16 y2, u16 color){
     // sort the vertices by y-coordinate ascending (y0 < y1 < y2)
     if (y0 > y1){
         int_swap(&y0, &y1);
@@ -112,8 +112,8 @@ void draw_filled_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 co
         fill_flat_top_triangle(x0, y0, x1, y1, x2, y2, color);
     } else {
         // calculate the new vertex (Mx, My) using triangle similarity
-        int My = y1;
-        int Mx = fix16ToRoundedInt(fix16Div(intToFix16((x2 - x0) * (y1 - y0)), intToFix16(y2 - y0))) + x0;
+        s16 My = y1;
+        s16 Mx = fix16ToRoundedInt(fix16Div(intToFix16((x2 - x0) * (y1 - y0)), intToFix16(y2 - y0))) + x0;
         
         // Draw flat-bottom triangle
         fill_flat_bottom_triangle(x0, y0, x1, y1, Mx, My, color);

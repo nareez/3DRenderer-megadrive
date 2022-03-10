@@ -5,9 +5,9 @@
 #include "display.h"
  
 typedef struct {
-    int a;
-    int b;
-    int c;
+    s16 a;
+    s16 b;
+    s16 c;
     u16 color;
 } face_t;
 
@@ -17,6 +17,6 @@ typedef struct {
     fix16 avg_depth;
 } triangle_t;
 
-void draw_filled_triangle(int x0, int y0, int x1, int y1, int x2, int y2, u16 color);
+void draw_filled_triangle(s16 x0, s16 y0, s16 x1, s16 y1, s16 x2, s16 y2, u16 color);
 
 #endif

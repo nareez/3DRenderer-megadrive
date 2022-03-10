@@ -12,7 +12,7 @@ triangle_t triangles_to_render[N_MESH_FACES];
 
 vec3_t camera_position = { .x = FIX16(0), .y = FIX16(0), .z = FIX16(0) };
 
-fix16 fov_factor = FIX16(5);
+fix16 fov_factor = FIX16(50);
 
 void handleJoyEvent(u16 joy, u16 changed, u16 state);
 
@@ -33,7 +33,7 @@ void setup(void){
     JOY_setEventHandler(handleJoyEvent);
 
     //initialize the render mode
-    render_method = RENDER_FILL_TRIANGLE_WIRE;
+    render_method = RENDER_WIRE;
     cull_method = CULL_BACKFACE;
 
     // init BMP mode
@@ -68,7 +68,7 @@ void update(void){
     mesh.rotation.x += mesh.rotation.x >= FIX16(31.78) ? FIX16(-31.78) : FIX16(0.1);
     mesh.rotation.y += mesh.rotation.y >= FIX16(31.78) ? FIX16(-31.78) : FIX16(0.1);
     mesh.rotation.z += mesh.rotation.z >= FIX16(31.78) ? FIX16(-31.78) : FIX16(0.1);
-    mesh.translation.z = FIX16(15);
+    mesh.translation.z = FIX16(3);
     // mesh.scale.x += 0.003;
     // mesh.scale.y += 0.001;
     // mesh.translation.x += 0.01;
@@ -77,7 +77,7 @@ void update(void){
     num_triangles = 0;
 
     // create a rotation, scale and translation matrix that will be used to multiply the mesh vertices
-    mat4_t scale_matrix = mat4_make_scale(mesh.scale.x, mesh.scale.y, mesh.scale.z);
+    // mat4_t scale_matrix = mat4_make_scale(mesh.scale.x, mesh.scale.y, mesh.scale.z);
     mat4_t translation_matrix = mat4_make_translation(mesh.translation.x, mesh.translation.y, mesh.translation.z);
     mat4_t rotation_matrix_x = mat4_make_rotation_x(mesh.rotation.x);
     mat4_t rotation_matrix_y = mat4_make_rotation_y(mesh.rotation.y);
@@ -96,7 +96,7 @@ void update(void){
 
             vec4_t transformed_vertex = vec4_from_vec3(face_vertices[j]);
 
-            transformed_vertex = mat4_mul_vec4(scale_matrix, transformed_vertex);
+            // transformed_vertex = mat4_mul_vec4(scale_matrix, transformed_vertex);
             transformed_vertex = mat4_mul_vec4(rotation_matrix_x, transformed_vertex);
             transformed_vertex = mat4_mul_vec4(rotation_matrix_y, transformed_vertex);
             transformed_vertex = mat4_mul_vec4(rotation_matrix_z, transformed_vertex);
@@ -186,18 +186,20 @@ void render(void){
         // se não funcionar chamar diretamente
         triangle_t triangle = triangles_to_render[i];
         
+        
         if (render_method == RENDER_FILL_TRIANGLE || render_method == RENDER_FILL_TRIANGLE_WIRE){
-            draw_filled_triangle(triangle.points[0].x, triangle.points[0].y
-                        ,triangle.points[1].x, triangle.points[1].y
-                        ,triangle.points[2].x, triangle.points[2].y
-                        ,triangle.color);
+            draw_filled_triangle(fix16ToRoundedInt(triangle.points[0].x), fix16ToRoundedInt(triangle.points[0].y)
+                                ,fix16ToRoundedInt(triangle.points[1].x), fix16ToRoundedInt(triangle.points[1].y)
+                                ,fix16ToRoundedInt(triangle.points[2].x), fix16ToRoundedInt(triangle.points[2].y)
+                                ,triangle.color);
         }
         if (render_method == RENDER_FILL_TRIANGLE_WIRE || render_method == RENDER_WIRE /*|| render_method == RENDER_WIRE_VERTEX*/){
-            draw_triangle(triangle.points[0].x, triangle.points[0].y
-                    ,triangle.points[1].x, triangle.points[1].y
-                    ,triangle.points[2].x, triangle.points[2].y
-                    , 0x48f3);
+            draw_triangle(fix16ToRoundedInt(triangle.points[0].x), fix16ToRoundedInt(triangle.points[0].y)
+                         ,fix16ToRoundedInt(triangle.points[1].x), fix16ToRoundedInt(triangle.points[1].y)
+                         ,fix16ToRoundedInt(triangle.points[2].x), fix16ToRoundedInt(triangle.points[2].y)
+                         ,0x00ff);
         }
+        
         // if (render_method == RENDER_WIRE_VERTEX){
         //     draw_rect(triangle.points[0].x - 3, triangle.points[0].y - 3, 2, 2, 0x00ff0000);
         //     draw_rect(triangle.points[1].x - 3, triangle.points[1].y - 3, 2, 2, 0x00ff0000);

@@ -6,7 +6,7 @@ Initialized audio at frequency 48000 with a 1024 sample buffer, 32-bit float for
 Added 6 game controller mappings from gamecontrollerdb.txt
 Min samples buffered before audio start: 1600
 Product ID: 00000000
-SHA1: 23bdb88b269eccfe7de65e8fd0e0db74da36b8fa
+SHA1: af8befce52e467163ce0ad0fc177776a18ac1182
 Not found in ROM DB, examining header
 
 Min samples buffered before audio start: 1600
