@@ -4,7 +4,6 @@
 #include "mesh.h"
 #include "matrix.h"
 
-// join wireframe and flat shaded cube
 // find why flat triangles sometimes are drawing in wrong position
 
 int num_triangles = 0;
@@ -18,10 +17,6 @@ void handleJoyEvent(u16 joy, u16 changed, u16 state);
 
 void setup(void){
 
-    VDP_setScreenWidth256();
-    VDP_setHInterrupt(0);
-    VDP_setHilightShadow(0);
-
     // reduce DMA buffer size to avoid running out of memory
     DMA_setBufferSize(2048);
     MEM_pack();
@@ -33,7 +28,7 @@ void setup(void){
     JOY_setEventHandler(handleJoyEvent);
 
     //initialize the render mode
-    render_method = RENDER_WIRE;
+    render_method = RENDER_FILL_TRIANGLE;
     cull_method = CULL_BACKFACE;
 
     // init BMP mode
@@ -141,10 +136,9 @@ void update(void){
             // project current vertex
             projected_points[j] = project(vec3_from_vec4(transformed_vertices[j]));
 
-            // scale and translate to the middle of the screen
-            // TODO remover?
-            projected_points[j].x += FIX16(128+2);
-            projected_points[j].y += FIX16(80+1);
+            // translate to the middle of the screen
+            projected_points[j].x += FIX16(128);
+            projected_points[j].y += FIX16(80);
             
         }
 
@@ -207,7 +201,6 @@ void render(void){
         // }
     }
 
-    
     BMP_showFPS(1);
     BMP_flip(1);    
 }

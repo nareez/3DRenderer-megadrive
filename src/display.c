@@ -3,9 +3,24 @@
 
 #define WHITE 0xff
 
+const u16 palette[16] = {
+    0x0000, //preto
+    0x000E, //vermelho
+    0x00EE, //amarelo
+    0x0E00, //azul
+    0x0E0E, //rosa
+    0x00E0, //verde
+    0x026e, //laranja
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+    0x0eee //branco
+};
+
 void initialize_window(void) {
     VDP_setScreenWidth256();
-    BMP_init(TRUE, BG_A, PAL2, FALSE);
+    // VDP_setHInterrupt(0);
+    // VDP_setHilightShadow(0);
+    BMP_init(TRUE, BG_A, PAL0, FALSE);
+    PAL_setPalette(PAL0, palette, CPU);
 }
 
 u16 pos = 2;

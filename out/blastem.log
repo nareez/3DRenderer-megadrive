@@ -1,12 +1,12 @@
 width: 1280, height: 960
 SDL2 Render Driver: opengl
-Window created with size: 1280 x 945
+Window created with size: 1280 x 834
 config says: 512
 Initialized audio at frequency 48000 with a 1024 sample buffer, 32-bit float format
 Added 6 game controller mappings from gamecontrollerdb.txt
 Min samples buffered before audio start: 1600
 Product ID: 00000000
-SHA1: af8befce52e467163ce0ad0fc177776a18ac1182
+SHA1: c480501a48989729a8711e350d4ca6ca0d527e6e
 Not found in ROM DB, examining header
 
 Min samples buffered before audio start: 1600

@@ -114,7 +114,22 @@ void draw_filled_triangle(s16 x0, s16 y0, s16 x1, s16 y1, s16 x2, s16 y2, u16 co
         // calculate the new vertex (Mx, My) using triangle similarity
         s16 My = y1;
         s16 Mx = fix16ToRoundedInt(fix16Div(intToFix16((x2 - x0) * (y1 - y0)), intToFix16(y2 - y0))) + x0;
-        
+
+        // if(y0 > 999){
+            // char str[10];
+            // fix16ToStr(intToFix16(y0), str, 1); //135
+            // BMP_drawText(str, 0, 3);
+            // char str1[10];
+            // fix16ToStr(intToFix16(y1), str1, 1); // 211
+            // BMP_drawText(str1, 0, 4);
+            // char str2[10];
+            // fix16ToStr(intToFix16(y2), str2, 1); // 101
+            // BMP_drawText(str2, 0, 5);
+            // char str3[10];
+            // fix16ToStr(intToFix16(Mx), str3, 1); // 101
+            // BMP_drawText(str3, 0, 6);
+        // }
+
         // Draw flat-bottom triangle
         fill_flat_bottom_triangle(x0, y0, x1, y1, Mx, My, color);
         // Draw flat-top triangle
