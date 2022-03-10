@@ -13,6 +13,13 @@ typedef struct {
     fix16 z;
 } vec3_t;
 
+typedef struct {
+    fix16 x;
+    fix16 y;
+    fix16 z;
+    fix16 w;
+} vec4_t;
+
 /****************************************
  *         Vector 2D functions          *
  * **************************************/
@@ -42,5 +49,11 @@ void vec3_normalize(vec3_t *a);
 vec3_t vec3_rotate_x(vec3_t v, fix16 angle);
 vec3_t vec3_rotate_y(vec3_t v, fix16 angle);
 vec3_t vec3_rotate_z(vec3_t v, fix16 angle);
+
+/****************************************
+ *   Vector conversion functions        *
+ * **************************************/
+vec4_t vec4_from_vec3(vec3_t v);
+vec3_t vec3_from_vec4(vec4_t v);
 
 #endif
