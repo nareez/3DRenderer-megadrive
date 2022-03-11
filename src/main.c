@@ -4,8 +4,6 @@
 #include "mesh.h"
 #include "matrix.h"
 
-// find why flat triangles sometimes are drawing in wrong position
-
 int num_triangles = 0;
 triangle_t triangles_to_render[N_MESH_FACES];
 
@@ -28,7 +26,7 @@ void setup(void){
     JOY_setEventHandler(handleJoyEvent);
 
     //initialize the render mode
-    render_method = RENDER_FILL_TRIANGLE;
+    render_method = RENDER_FILL_TRIANGLE_WIRE;
     cull_method = CULL_BACKFACE;
 
     // init BMP mode
@@ -187,18 +185,12 @@ void render(void){
                                 ,fix16ToRoundedInt(triangle.points[2].x), fix16ToRoundedInt(triangle.points[2].y)
                                 ,triangle.color);
         }
-        if (render_method == RENDER_FILL_TRIANGLE_WIRE || render_method == RENDER_WIRE /*|| render_method == RENDER_WIRE_VERTEX*/){
+        if (render_method == RENDER_FILL_TRIANGLE_WIRE || render_method == RENDER_WIRE){
             draw_triangle(fix16ToRoundedInt(triangle.points[0].x), fix16ToRoundedInt(triangle.points[0].y)
                          ,fix16ToRoundedInt(triangle.points[1].x), fix16ToRoundedInt(triangle.points[1].y)
                          ,fix16ToRoundedInt(triangle.points[2].x), fix16ToRoundedInt(triangle.points[2].y)
                          ,0x00ff);
         }
-        
-        // if (render_method == RENDER_WIRE_VERTEX){
-        //     draw_rect(triangle.points[0].x - 3, triangle.points[0].y - 3, 2, 2, 0x00ff0000);
-        //     draw_rect(triangle.points[1].x - 3, triangle.points[1].y - 3, 2, 2, 0x00ff0000);
-        //     draw_rect(triangle.points[2].x - 3, triangle.points[2].y - 3, 2, 2, 0x00ff0000);
-        // }
     }
 
     BMP_showFPS(1);

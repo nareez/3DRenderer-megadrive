@@ -61,8 +61,9 @@ void draw_rect(s16 dx, s16 dy, s16 width, s16 height, u8 color) {
     }
 }
 
-//SGDK drawline assembly Bresenham
+//SGDK assembly drawline
 void draw_line(s16 x0, s16 y0, s16 x1, s16 y1, u16 color) {
+
     Vect2D_s16 v1 = {
         .x = x0,
         .y = y0
@@ -77,6 +78,7 @@ void draw_line(s16 x0, s16 y0, s16 x1, s16 y1, u16 color) {
         .pt2 = v2,
         .col = color
     };
+
     BMP_drawLine(&line);
 }
 // TODO fix div/0 bug when x0 and y0 is equal x1 and y1, this occurs after a few seconds
