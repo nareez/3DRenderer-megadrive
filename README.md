@@ -6,10 +6,11 @@ Runs at max 20 FPS, SGDK BMP.H limit that simulates a framebuffer on Sega Megadr
 
 Due limitations of Sega Megadrive, i do not plan to continue coding this project
 
-Techs:
+## Techs:
 - [SGDK 1.7](https://github.com/Stephane-D/SGDK)
 - [Doragasu SGDK docker container](https://gitlab.com/doragasu/docker-sgdk)
 
-Demo:
-https://youtu.be/o6sXNkywgLk
+## Demo:
+### https://youtu.be/o6sXNkywgLk
+
 [![rotating cube demo](https://img.youtube.com/vi/o6sXNkywgLk/0.jpg)](https://youtu.be/o6sXNkywgLk)
